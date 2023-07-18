@@ -74,15 +74,18 @@ public class SalesManager {
 
         File dir = new File("./resources/"); //path указывает на директорию
         ArrayList<Integer> monthLst = new ArrayList<>();
-        for (File file : dir.listFiles()) {
-            if ((file.getName().startsWith("m.")) &&
-                    (file.getName().endsWith(".csv"))) {
-                String name = file.getName().substring(srcBegin, srcEnd);
-                int nam = Integer.parseInt(name);
-                monthLst.add(nam);
+
+        if (dir.list().length == 0) System.out.println("Невозможно прочитать файлы с отчётами. Возможно, файлы отсутствует в нужной директории.");
+        else {
+            for (File file : dir.listFiles()) {
+                if ((file.getName().startsWith("m.")) &&
+                        (file.getName().endsWith(".csv"))) {
+                    String name = file.getName().substring(srcBegin, srcEnd);
+                    int nam = Integer.parseInt(name);
+                    monthLst.add(nam);
+                }
             }
         }
-
         return monthLst;
     }
 
@@ -90,13 +93,18 @@ public class SalesManager {
 
         File dir = new File("./resources/"); //path указывает на директорию
         ArrayList<String> monthNamesLst = new ArrayList<>();
-        for (File file : dir.listFiles()) {
-            if ((file.getName().startsWith("m.")) &&
-                    (file.getName().endsWith(".csv"))) {
-                String nameOfFile = file.getName();
-                monthNamesLst.add(nameOfFile);
+
+            for (File file : dir.listFiles()) {
+                if (file.exists())
+                    System.out.println("Невозможно прочитать файлы с отчётами. Возможно, файлы отсутствует в нужной директории.");
+                if ((file.getName().startsWith("m.")) &&
+                        (file.getName().endsWith(".csv"))) {
+                    String nameOfFile = file.getName();
+                    monthNamesLst.add(nameOfFile);
+                }
+
             }
-        }
+
 
         return monthNamesLst;
     }
@@ -104,11 +112,16 @@ public class SalesManager {
     public ArrayList makeArrayOfFilesYearly() {
         File dir = new File("./resources/"); //path указывает на директорию
         ArrayList<String> yearLst = new ArrayList<>();
-        for (File file : dir.listFiles()) {
-            if ((file.getName().startsWith("y.")) &&
-                    (file.getName().endsWith(".csv"))) {
-                String name = file.getName().toString();
-                yearLst.add(name);
+        if (dir.list().length == 0) System.out.println("Невозможно прочитать файлы с отчётами. Возможно, файлы отсутствует в нужной директории.");
+        else {
+            for (File file : dir.listFiles()) {
+                if (file.exists())
+                    System.out.println("Невозможно прочитать файлы с отчётами. Возможно, файлы отсутствует в нужной директории.");
+                if ((file.getName().startsWith("y.")) &&
+                        (file.getName().endsWith(".csv"))) {
+                    String name = file.getName().toString();
+                    yearLst.add(name);
+                }
             }
         }
 
